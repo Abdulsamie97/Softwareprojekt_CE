@@ -6,30 +6,38 @@
 </div>
 <div class="mt-10 p-4 flex flex-wrap justify-center">
   <div class="ml-4 text-2x text-blue-500"
-    v-for="(pokemon, idx) in pokemons"
+    v-for="(pokemon, idx) in filteredPokemon"
     :key="idx"
     >
     {{pokemon.name}}
 
   </div>  
 </div>
-<div class="home">
-    <h3>Hello World</h3>
-    {{pokemons}}
-  </div>
 </template>
 
 <script>
-import {reactive, toRefs} from "vue";
+import {reactive, toRefs, computed} from "vue";
 
 export default {
   name: 'HomeView',
     setup(){
 
+      function updatePokemon(){
+        if(!state.text){
+          return []
+        }
+
+        return state.pokemons.filter((pokemon)=>
+          pokemon.name.includes(state.text)
+        )
+      }
+
       const state=reactive(
         {
           pokemons: [],
-          urlIdLookup: {}
+          urlIdLookup: {},
+          text: "",
+          filteredPokemon:  computed(() => updatePokemon()) // would be better named filteredPokemons  TB
         }
       )
 
