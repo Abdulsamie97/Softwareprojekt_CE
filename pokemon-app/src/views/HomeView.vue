@@ -9,7 +9,9 @@
     v-for="(pokemon, idx) in filteredPokemon"
     :key="idx"
     >
+    <router-link :to="`/about/${urlIdLookup[pokemon.name]}`">
     {{pokemon.name}}
+    </router-link>
 
   </div>  
 </div>
