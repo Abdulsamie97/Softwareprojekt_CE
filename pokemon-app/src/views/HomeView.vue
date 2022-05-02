@@ -1,19 +1,22 @@
 <template>
-<div class="w-full flex justify-center">
-  <input type="text" placeholder="Enter Pokemon here" 
+<!--<div class="w-full flex justify-center">
+  <input type="text" placeholder="Enter type here" 
          class="mt-10 p2 border-blue-500 border-2"
-         v-model="text"/>
-</div>
+         v-model="text"/> 
+</div>-->
+
 <div class="mt-10 p-4 flex flex-wrap justify-center">
   <div class="ml-4 text-2x text-blue-500"
-    v-for="(pokemon, idx) in filteredPokemon"
-    :key="idx"
-    >
-    <router-link :to="`/about/${urlIdLookup[pokemon.name]}`">
-    {{pokemon.name}}
+    v-for="(type, idx) in filteredType"
+    :key="idx">
+    <!--<router-link :to="`/about/${urlIdLookup[type.name]}`">
+    {{type.name}}
+    </router-link>-->
+    <br />
+    <router-link :to="`/type/${urlIdLookup[type.name]}`">
+    {{type.name}}
     </router-link>
-
-  </div>  
+  </div>
 </div>
 </template>
 
@@ -24,13 +27,13 @@ export default {
   name: 'HomeView',
     setup(){
 
-      function updatePokemon(){
-        if(!state.text){
+      function updateType(){
+        if(state.text){
           return []
         }
 
-        return state.pokemons.filter((pokemon)=>
-          pokemon.name.includes(state.text)
+        return state.pokemons.filter((type)=>
+          type.name.includes(state.text)
         )
       }
 
@@ -39,12 +42,12 @@ export default {
           pokemons: [],
           urlIdLookup: {},
           text: "",
-          filteredPokemon:  computed(() => updatePokemon()) // would be better named filteredPokemons  TB
+          filteredType:  computed(() => updateType()) // would be better named filteredPokemons  TB
         }
       )
 
 
-    fetch("https://pokeapi.co/api/v2/pokemon?offset=0")
+    fetch("https://pokeapi.co/api/v2/type?offset=0")
     .then((res) => res.json())
     .then((data) => {
       console.log(data)
