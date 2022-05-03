@@ -26,11 +26,13 @@ export default {
 
       function updatePokemon(){
         if(!state.text){
-          return []
+          return state.pokemons
+
         }
+        
 
         return state.pokemons.filter((pokemon)=>
-          pokemon.name.includes(state.text)
+          pokemon.name.startsWith(state.text)
         )
       }
 
