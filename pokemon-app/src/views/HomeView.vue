@@ -26,15 +26,14 @@ export default {
 
       function updatePokemon(){
         if(!state.text){
-          return state.pokemons
-
+          return []
         }
-        
 
         return state.pokemons.filter((pokemon)=>
-          pokemon.name.startsWith(state.text)
+          pokemon.name.includes(state.text)
         )
       }
+
 
       const state=reactive(
         {
