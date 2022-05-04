@@ -1,6 +1,7 @@
 <template>
+<!--Hier wird den Inhalt eines Pokemonnames gezeigt, also Das Bild des Figure und ihrer Typen und die Hintergrungfarbe  -->
   <div class="about">
-    <div
+    <div 
       v-if="pokemon"
       className="w-3/12 m-auto bg-purple-100 mt-4 shadow-2xl flex justify-center flex-col items-center"
     >
@@ -30,11 +31,9 @@ export default {
       .then((res) => res.json())
       .then((data) => {
         pokemon.pokemon = data;
-        console.log(data);
+ //       console.log(data);
       });
     return { ...toRefs(pokemon) };
   }
 };
 </script>
-
-
