@@ -15,6 +15,8 @@
 
   </div>  
 
+  We have {{filteredPokemon.length}} matches.
+
 </div>
 </template>
 
@@ -25,6 +27,10 @@ export default {
   name: 'HomeView',
     setup(){
 
+      function reverseString(str) {
+        return str.split("").reverse().join("");
+      }
+  
       function updatePokemon(){
         if(!state.text){
           return state.pokemons
@@ -33,7 +39,7 @@ export default {
         
 
         return state.pokemons.filter((pokemon)=>
-          pokemon.name.endsWith(state.text)
+          pokemon.name.endsWith(reverseString(state.text))
         )
         
       }
@@ -59,5 +65,8 @@ export default {
     } )
     return {...toRefs(state)}
   }
+
+
+
 }
 </script>
